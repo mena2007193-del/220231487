@@ -1,25 +1,27 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-// Function to calculate status
 function calculateStatus($grade) {
-    if ($grade >= 90) return "Excellent";
-    if ($grade >= 80) return "Very Good";
-    if ($grade >= 70) return "Good";
-    if ($grade >= 60) return "Pass";
-    return "Fail";
+    if ($grade >= 90) {
+        return "ممتاز";
+    } elseif ($grade >= 80) {
+        return "جيد جدا";
+    } elseif ($grade >= 70) {
+        return "جيد";
+    } elseif ($grade >= 60) {
+        return "مقبول";
+    } else {
+        return "راسب";
+    }
 }
 
 $student = [
-    ["name" => "Jana", "grade" => 95, "age" => 20],
-    ["name" => "Mohammad", "grade" => 88, "age" => 21],
-    ["name" => "Sara", "grade" => 74, "age" => 19],
-    ["name" => "Laila", "grade" => 69, "age" => 22],
-    ["name" => "Khaled", "grade" => 55, "age" => 20]
+    ["name" => "جنى", "grade" => 95, "age" => 20],
+    ["name" => "محمد", "grade" => 88, "age" => 21],
+    ["name" => "احلام", "grade" => 74, "age" => 19],
+    ["name" => "ليلى", "grade" => 69, "age" => 22],
+    ["name" => "احمد", "grade" => 55, "age" => 20]
 ];
 
-// Statistics
 $sum = 0;
 $max = $student[0]["grade"];
 $min = $student[0]["grade"];
@@ -38,7 +40,7 @@ $average = $sum / count($student);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <title>Students Report</title>
@@ -47,6 +49,7 @@ $average = $sum / count($student);
     body {
         font-family: Arial;
         text-align: center;
+        direction: rtl;
         background: #f4f4f4;
     }
 
@@ -78,21 +81,21 @@ $average = $sum / count($student);
 
 <body>
 
-<h2>Students Data Table</h2>
+<h2>جدول بيانات الطلاب</h2>
 
 <table>
     <tr>
-        <th>Name</th>
-        <th>Grade</th>
-        <th>Age</th>
-        <th>Status</th>
+        <th>اسم الطالب</th>
+        <th>العمر</th>
+        <th>الدرجة</th>
+        <th>الحالة</th>
     </tr>
 
     <?php foreach ($student as $s) { ?>
         <tr>
             <td><?php echo $s["name"]; ?></td>
-            <td><?php echo $s["grade"]; ?></td>
             <td><?php echo $s["age"]; ?></td>
+            <td><?php echo $s["grade"]; ?></td>
             <td><?php echo calculateStatus($s["grade"]); ?></td>
         </tr>
     <?php } ?>
@@ -100,11 +103,11 @@ $average = $sum / count($student);
 </table>
 
 <div class="stats">
-    <h3>Statistics</h3>
-    <p>Highest Grade: <?php echo $max; ?></p>
-    <p>Lowest Grade: <?php echo $min; ?></p>
-    <p>Average Grade: <?php echo number_format($average, 2); ?></p>
-    <p>Passed Students: <?php echo $passed; ?></p>
+    <h3>الاحصائيات</h3>
+    <p>أعلى درجة: <?php echo $max; ?></p>
+    <p>أدنى درجة: <?php echo $min; ?></p>
+    <p>معدل الدرجات: <?php echo number_format($average, 2); ?></p>
+    <p>عدد الطلاب الناجحين: <?php echo $passed; ?></p>
 </div>
 
 </body>
